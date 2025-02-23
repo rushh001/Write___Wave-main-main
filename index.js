@@ -8,8 +8,9 @@ const Blog = require('./models/blog');
 
 const UserRoute = require("./routes/user");
 const blogRoute = require("./routes/blog");
+
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000; // ✅ Dynamic port for Vercel
 
 // ✅ Connect to MongoDB with Error Handling
 mongoose
@@ -35,8 +36,6 @@ app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token")); // ✅ Correctly using middleware
 app.use(express.static(path.resolve("./public")));
 
-
-
 // ✅ Routes
 app.use("/user", UserRoute);
 app.use("/blog", blogRoute);
@@ -47,7 +46,6 @@ app.get("/", async (req, res) => {
         blogs: allBlogs,
     });
 });
-
 
 // ✅ Start Server
 app.listen(port, () => console.log(`🚀 Server running on http://localhost:${port}`));
