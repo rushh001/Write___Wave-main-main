@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WriteWave</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Inline CSS -->
+    <style>
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(90deg, #343a40, #212529);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f8f9fa !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+            color: #f8f9fa !important;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+
+        .alert {
+            margin: 20px auto;
+            max-width: 90%;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-secondary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="/">WriteWave</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                    <% if (locals.user) { %>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/blog/add-new">Add Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <%= locals.user.fullName || "No Name Available" %>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/user/logout">Logout</a>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/user/signup">Create Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/user/signin">Sign in</a>
+                            </li>
+                            <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <% if (locals.error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= locals.error %>
+        </div>
+        <% } %>
+
+
+            <!-- Debuggin
+            g Script -->
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    console.log("Bootstrap JS Loaded:", typeof bootstrap !== "undefined");
+                    var dropdown = document.querySelector(".dropdown-toggle");
+                    if (dropdown) {
+                        new bootstrap.Dropdown(dropdown);
+                        console.log("Dropdown Initialized");
+                    }
+                });
+            </script>
+</body>
+
+</html>

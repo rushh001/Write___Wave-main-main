@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Add Blog </title>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+
+        <div class="container mb-9">
+            <form action="/blog" method="POST" enctype="multipart/form-data">
+                <!-- ✅ Ensure method and enctype are included -->
+
+                <!-- Cover Image Upload -->
+                <div class="mb-3">
+                    <label for="coverImage" class="form-label">Cover Image</label>
+                    <input type="file" name="coverImage" class="form-control" id="coverImage">
+                    <!-- ✅ Fixed input type -->
+                </div>
+
+                <!-- Blog Title -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" required> <!-- ✅ Added required -->
+                </div>
+
+                <!-- Blog Text -->
+                <div class="mb-3">
+                    <label for="body" class="form-label">Text</label>
+                    <textarea name="body" class="form-control" id="body" placeholder="Add your blog here"
+                        required></textarea> <!-- ✅ Fixed textarea -->
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button> <!-- ✅ Added type="submit" -->
+                </div>
+
+            </form>
+        </div>
+
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>
