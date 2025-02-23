@@ -21,7 +21,7 @@ mongoose
     })
     .then(() => console.log("✅ MongoDB connected"))
     .catch((err) => {
-        console.error("❌ MongoDB connection error:", err);
+        console.error(" MongoDB connection error:", err);
         process.exit(1); // Stop server if DB connection fails
     });
 
@@ -48,4 +48,4 @@ app.get("/", async (req, res) => {
 });
 
 // ✅ Start Server
-app.listen(port, () => console.log(`🚀 Server running on http://localhost:${port}`));
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
